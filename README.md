@@ -66,3 +66,21 @@ Description - To get the list of Users and Progress for a particular Course.
 Please find Sample Response of each of the API in the document file.
 https://github.com/vidhu06/CourseDashboard/blob/main/Document.txt
 
+
+## Steps to Setup and Run the Project 
+
+#### Clone the Repo
+> git clone https://github.com/vidhu06/CourseDashboard.git
+
+#### Install and create a virtualenv 
+> py -m pip install --user virtualenv
+> py -m venv env
+
+#### Activate the env
+> source env/Scripts/activate
+
+#### Install the requirements
+> pip install -r requirements.txt
+
+#### Start the Server
+> python manage.py runserver
