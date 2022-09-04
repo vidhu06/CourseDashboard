@@ -1,0 +1,342 @@
+
+## CourseEnrollmentList 
+API - http://127.0.0.1:8000/courses/courseEnrollment/ 
+Description - It provides details of all the Users, their Courses along with the progress
+
+Response 
+
+GET /courses/courseEnrollment/
+HTTP 200 OK
+Allow: GET, HEAD, OPTIONS
+Content-Type: application/json
+Vary: Accept
+
+[
+    {
+        "person_id": 2,
+        "person_name": "Priya",
+        "manager": {
+            "user_id": 1,
+            "name": "Vidhu"
+        },
+        "course_name": "CourseA",
+        "is_started": false,
+        "total_modules": 10,
+        "completed_modules": 0,
+        "is_completed": false,
+        "completion_percent": "0.0%"
+    },
+    {
+        "person_id": 3,
+        "person_name": "Ram",
+        "manager": {
+            "user_id": 2,
+            "name": "Priya"
+        },
+        "course_name": "CourseB",
+        "is_started": true,
+        "total_modules": 8,
+        "completed_modules": 4,
+        "is_completed": false,
+        "completion_percent": "50.0%"
+    },
+    {
+        "person_id": 1,
+        "person_name": "Vidhu",
+        "manager": {
+            "user_id": 1,
+            "name": "Vidhu"
+        },
+        "course_name": "CourseB",
+        "is_started": true,
+        "total_modules": 8,
+        "completed_modules": 3,
+        "is_completed": false,
+        "completion_percent": "37.5%"
+    },
+    {
+        "person_id": 1,
+        "person_name": "Vidhu",
+        "manager": {
+            "user_id": 1,
+            "name": "Vidhu"
+        },
+        "course_name": "CourseC",
+        "is_started": true,
+        "total_modules": 4,
+        "completed_modules": 3,
+        "is_completed": false,
+        "completion_percent": "75.0%"
+    },
+    {
+        "person_id": 3,
+        "person_name": "Ram",
+        "manager": {
+            "user_id": 2,
+            "name": "Priya"
+        },
+        "course_name": "CourseA",
+        "is_started": true,
+        "total_modules": 10,
+        "completed_modules": 4,
+        "is_completed": false,
+        "completion_percent": "40.0%"
+    }
+]
+
+
+
+1. CourseEnrollmentList by users (User Based View) 
+API - http://127.0.0.1:8000/courses/courseEnrollment/?user_id=2
+Description - When a User wants to see the progress of courses, this API will provide the list of all courses of the user. <br>
+
+
+GET /courses/courseEnrollment/?user_id=2
+HTTP 200 OK
+Allow: GET, HEAD, OPTIONS
+Content-Type: application/json
+Vary: Accept
+
+[
+    {
+        "person_id": 2,
+        "person_name": "Priya",
+        "manager": {
+            "user_id": 1,
+            "name": "Vidhu"
+        },
+        "course_name": "CourseA",
+        "is_started": false,
+        "total_modules": 10,
+        "completed_modules": 0,
+        "is_completed": false,
+        "completion_percent": "0.0%"
+    }
+]
+
+
+2. CourseEnrollmentList under a manager
+API - http://127.0.0.1:8000/courses/courseEnrollment/?user_id__manager_id=1 
+Description - When a manager wants to see the progress of all the persons under him, the API will provide the response.
+
+Response 
+GET /courses/courseEnrollment/?user_id__manager_id=1
+HTTP 200 OK
+Allow: GET, HEAD, OPTIONS
+Content-Type: application/json
+Vary: Accept
+
+[
+    {
+        "person_id": 1,
+        "person_name": "Vidhu",
+        "manager": {
+            "user_id": 1,
+            "name": "Vidhu"
+        },
+        "course_name": "CourseA",
+        "is_started": true,
+        "total_modules": 10,
+        "completed_modules": 3,
+        "is_completed": false,
+        "completion_percent": "30.0%"
+    },
+    {
+        "person_id": 1,
+        "person_name": "Vidhu",
+        "manager": {
+            "user_id": 1,
+            "name": "Vidhu"
+        },
+        "course_name": "CourseB",
+        "is_started": true,
+        "total_modules": 8,
+        "completed_modules": 3,
+        "is_completed": false,
+        "completion_percent": "37.5%"
+    },
+    {
+        "person_id": 1,
+        "person_name": "Vidhu",
+        "manager": {
+            "user_id": 1,
+            "name": "Vidhu"
+        },
+        "course_name": "CourseC",
+        "is_started": true,
+        "total_modules": 4,
+        "completed_modules": 3,
+        "is_completed": false,
+        "completion_percent": "75.0%"
+    },
+    {
+        "person_id": 2,
+        "person_name": "Priya",
+        "manager": {
+            "user_id": 1,
+            "name": "Vidhu"
+        },
+        "course_name": "CourseA",
+        "is_started": false,
+        "total_modules": 10,
+        "completed_modules": 0,
+        "is_completed": false,
+        "completion_percent": "0.0%"
+    }
+]
+
+3. CourseEnrollmentList by Company 
+API - http://127.0.0.1:8000/courses/courseEnrollment/?course_id__company=Brillio 
+Description - To get the list of all the Courses
+
+Response
+GET /courses/courseEnrollment/?course_id__company=Brillio
+HTTP 200 OK
+Allow: GET, HEAD, OPTIONS
+Content-Type: application/json
+Vary: Accept
+
+[
+    {
+        "person_id": 1,
+        "person_name": "Vidhu",
+        "manager": {
+            "user_id": 1,
+            "name": "Vidhu"
+        },
+        "course_name": "CourseA",
+        "is_started": true,
+        "total_modules": 10,
+        "completed_modules": 3,
+        "is_completed": false,
+        "completion_percent": "30.0%"
+    },
+    {
+        "person_id": 2,
+        "person_name": "Priya",
+        "manager": {
+            "user_id": 1,
+            "name": "Vidhu"
+        },
+        "course_name": "CourseA",
+        "is_started": false,
+        "total_modules": 10,
+        "completed_modules": 0,
+        "is_completed": false,
+        "completion_percent": "0.0%"
+    },
+    {
+        "person_id": 3,
+        "person_name": "Ram",
+        "manager": {
+            "user_id": 2,
+            "name": "Priya"
+        },
+        "course_name": "CourseA",
+        "is_started": true,
+        "total_modules": 10,
+        "completed_modules": 4,
+        "is_completed": false,
+        "completion_percent": "40.0%"
+    },
+    {
+        "person_id": 3,
+        "person_name": "Ram",
+        "manager": {
+            "user_id": 2,
+            "name": "Priya"
+        },
+        "course_name": "CourseB",
+        "is_started": true,
+        "total_modules": 8,
+        "completed_modules": 4,
+        "is_completed": false,
+        "completion_percent": "50.0%"
+    },
+    {
+        "person_id": 1,
+        "person_name": "Vidhu",
+        "manager": {
+            "user_id": 1,
+            "name": "Vidhu"
+        },
+        "course_name": "CourseB",
+        "is_started": true,
+        "total_modules": 8,
+        "completed_modules": 3,
+        "is_completed": false,
+        "completion_percent": "37.5%"
+    },
+    {
+        "person_id": 1,
+        "person_name": "Vidhu",
+        "manager": {
+            "user_id": 1,
+            "name": "Vidhu"
+        },
+        "course_name": "CourseC",
+        "is_started": true,
+        "total_modules": 4,
+        "completed_modules": 3,
+        "is_completed": false,
+        "completion_percent": "75.0%"
+    }
+]
+
+
+4. CourseEnrollmentList by Course
+API - http://127.0.0.1:8000/courses/courseEnrollment/?course_id__course_name=CourseA
+Description - To get the list of Users and Progress for a particular Course.
+
+Response
+
+GET /courses/courseEnrollment/?course_id__course_name=CourseA
+HTTP 200 OK
+Allow: GET, HEAD, OPTIONS
+Content-Type: application/json
+Vary: Accept
+
+[
+    {
+        "person_id": 1,
+        "person_name": "Vidhu",
+        "manager": {
+            "user_id": 1,
+            "name": "Vidhu"
+        },
+        "course_name": "CourseA",
+        "is_started": true,
+        "total_modules": 10,
+        "completed_modules": 3,
+        "is_completed": false,
+        "completion_percent": "30.0%"
+    },
+    {
+        "person_id": 2,
+        "person_name": "Priya",
+        "manager": {
+            "user_id": 1,
+            "name": "Vidhu"
+        },
+        "course_name": "CourseA",
+        "is_started": false,
+        "total_modules": 10,
+        "completed_modules": 0,
+        "is_completed": false,
+        "completion_percent": "0.0%"
+    },
+    {
+        "person_id": 3,
+        "person_name": "Ram",
+        "manager": {
+            "user_id": 2,
+            "name": "Priya"
+        },
+        "course_name": "CourseA",
+        "is_started": true,
+        "total_modules": 10,
+        "completed_modules": 4,
+        "is_completed": false,
+        "completion_percent": "40.0%"
+    }
+]
